@@ -1,5 +1,6 @@
 import torch
 from torch import nn
+from sklearn.linear_model import LinearRegression
 
 device = ("cuda" if torch.cuda.is_available() else "cpu")
 
