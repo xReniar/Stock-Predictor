@@ -11,7 +11,6 @@ export FLASK_APP=server # one time only
 flask run
 ```
 # to do
-- settare venv
 - mettere apposto il codice
   - ordinare codice
   - fare parte di data
