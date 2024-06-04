@@ -1,12 +1,13 @@
 import torch
-from torch import nn
+import torch.nn as nn
+import torch.nn.functional as F
 from sklearn.linear_model import LinearRegression
 
 device = ("cuda" if torch.cuda.is_available() else "cpu")
 
 class LSTM(nn.Module):
     def __init__(self, input_size, hidden_size, num_stacked_layers) -> None:
-        super(LSTM).__init__()
+        super().__init__()
         self.hidden_size = hidden_size
         self.num_stacked_layers = num_stacked_layers
 
