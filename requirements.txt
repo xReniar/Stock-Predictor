@@ -2,3 +2,4 @@ scikit-learn
 yfinance
 flask
 torch==2.0.0
+matplotlib
