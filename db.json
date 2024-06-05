@@ -1,0 +1,10 @@
+{
+    "stocks": [
+        {
+            "name": "AMZN",
+            "time_train": "",
+            "model_path": ""
+        }
+    ]
+    
+}
