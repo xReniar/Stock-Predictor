@@ -1,5 +1,5 @@
 # Stock Predictor
-Machine learning course project
+Machine learning course project that tries to predict if the price of the selected stocks are going to rise or fall. We used 3 models for predicting the price and they are `Linear Regression`, `LSTM` and `CNN`.
 ## Installing the requirements
 To install all the libraries:
 ```bash
@@ -10,13 +10,3 @@ pip3 install -r requirements.txt
 export FLASK_APP=server # one time only
 flask run
 ```
-# to do
-- mettere apposto il codice
-  - ordinare codice
-  - fare parte di data
-  - fare parte di training
-- creare rete neurale RNN
-  - mettere insieme alla regressione lineare
-  - lavorare con i time frame
-- mettere tutto su web
-  - possibilità di scegliere lo stock
