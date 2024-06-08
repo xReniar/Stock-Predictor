@@ -2,12 +2,45 @@
 <html>
     <head>
         <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Stock Predictor</title>
         <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
     </head>
     <body>
-        <h1>Hello world</h1>
-        <li>
-            
-        </li>
+        <div class="stocks-container"></div>
+        <script>
+            // Dati degli stocks passati dal server
+            var data = {{ stocks | tojson }};
+
+            // Funzione per creare e aggiungere un div per ogni valore di userData
+            function createStockDivs(stocks) {
+                // Ottieni il body del documento
+                var container = document.querySelector(".stocks-container");
+                
+                // Itera attraverso ciascun valore di stocks
+                stocks.forEach(function(stock) {
+                    var div = document.createElement('div');
+                    div.textContent = stock;
+                    
+                    var span = document.createElement('span');
+                    span.textContent = "Loading"
+                    div.appendChild(span);
+                    setInterval(function() {
+                        fetch('/value/' + stock)
+                            .then(response => response.json())
+                            .then(data => {
+                                span.textContent = 'Price: ' + parseFloat(data).toFixed(4);
+                            })
+                            .catch(error => {
+                                console.error('Error fetching data:', error);
+                            });
+                    }, 5000);
+                    container.appendChild(div);
+                });
+            }
+                
+            // Chiama la funzione per creare i div
+            createStockDivs(data);
+        </script>
     </body>
 </html>
