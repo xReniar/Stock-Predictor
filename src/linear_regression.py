@@ -52,7 +52,7 @@ for ticker in tickers:
 
     # Preprocess data
     sequence_length = 10
-    data_sequences = preprocess_data("lienar_regression",
+    data_sequences = preprocess_data("linear_regression",
                                      stock_data,
                                      sequence_length)
 

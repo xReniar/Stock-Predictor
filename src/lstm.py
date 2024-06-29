@@ -29,7 +29,7 @@ class LSTM(nn.Module):
 
         self.fc = nn.Linear(hidden_size, 1)
 
-    def forward(self, x):
+    def forward(self, x: torch.Tensor):
         batch_size = x.size(0)
         h0 = torch.zeros(self.num_stacked_layers, batch_size, self.hidden_size).to(device)
         c0 = torch.zeros(self.num_stacked_layers, batch_size, self.hidden_size).to(device)
