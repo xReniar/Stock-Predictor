@@ -2,38 +2,28 @@
     "stocks": [
         {
             "name": "BTC-USD",
-            "models": {
-                "pytorch": "",
-                "scikit-learn": ""
-            }
+            "pytorch-model":"",
+            "scikit-model":""
         },
         {
             "name": "AAPL",
-            "models": {
-                "pytorch": "",
-                "scikit-learn": ""
-            }
+            "pytorch-model":"",
+            "scikit-model":""
         },
         {
             "name": "AMZN",
-            "models": {
-                "pytorch": "",
-                "scikit-learn": ""
-            }
+            "pytorch-model":"",
+            "scikit-model":""
         },
         {
             "name": "BTC-EUR",
-            "models": {
-                "pytorch": "",
-                "scikit-learn": ""
-            }
+            "pytorch-model":"",
+            "scikit-model":""
         },
         {
             "name": "GOOG",
-            "models": {
-                "pytorch": "",
-                "scikit-learn": ""
-            }
+            "pytorch-model":"",
+            "scikit-model":""
         }
     ]   
 }
