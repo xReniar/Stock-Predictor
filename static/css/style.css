@@ -1,7 +1,4 @@
-body {
-    background-color: white;
-}
-
-.stocks-container {
-    display: flex;
+.no-padding {
+    padding-left: 0%;
+    padding-right: 0%;
 }
