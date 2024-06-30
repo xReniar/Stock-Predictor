@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!--data-bs-theme="dark"-->
 <html>
     <head>
         <meta charset="utf-8">
@@ -24,63 +25,7 @@
                 </main>
             </div>
         </div>
-        <script>
-            // Dati degli stocks passati dal server
-            var data = {{ stocks | tojson }};
-
-            // Funzione per creare e aggiungere un div per ogni valore di userData
-            function createStockDivs(stocks) {
-                // Ottieni il body del documento
-                var container = document.querySelector(".stocks-container");
-
-                stocks.forEach((stock) => {
-                    // creating stock card header
-                    var card_header = document.createElement("div");
-                    card_header.className = "card-header py-3";
-                    var stock_name = document.createElement("h4");
-                    stock_name.className = "card-title pricing-card-title";
-                    stock_name.textContent = stock;
-                    card_header.appendChild(stock_name);
-
-                    // creating stock card body
-                    var card_body = document.createElement("div");
-                    card_body.className = "card-body";
-                    var stock_price = document.createElement("h1");
-                    stock_price.className = "my-0 fw-normal";
-                    stock_price.textContent = "Loading";
-                    setInterval(function() {
-                        fetch('/value/' + stock)
-                            .then(response => response.json())
-                            .then(data => {
-                                stock_price.textContent = parseFloat(data).toFixed(4);
-                            })
-                            .catch(error => {
-                                console.error('Error fetching data:', error);
-                            });
-                    }, 5000);
-                    card_body.appendChild(stock_price);
-
-                    // creating card div
-                    var card_div = document.createElement("div");
-                    card_div.className = "card mb-4 rounded-3 shadow-sm";
-                    card_div.appendChild(card_header);
-                    card_div.append(card_body);
-                    card_div.addEventListener("click",() => {
-                        window.location.href = `/chart/${stock}`;
-                    });
-
-                    // creating col div
-                    var col_div = document.createElement("div");
-                    col_div.className = "col";
-                    col_div.appendChild(card_div);
-
-                    container.appendChild(col_div);
-                });
-            }
-            
-            /* creating the div for every stock */
-            createStockDivs(data);
-        </script>
+        <script src="{{ url_for('static', filename='js/stocks.js') }} "></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     </body>
 </html>
