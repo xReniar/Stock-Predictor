@@ -12,58 +12,16 @@
             <div class="row">
                 <nav class="navbar navbar-expand-lg bg-body-tertiary">
                     <div class="container-md">
-                      <a class="navbar-brand" href="#">Stock Predictor</a>
+                        <a class="navbar-brand" href="#">
+                            <span class="display-6">Stock Predictor</span>
+                        </a>
                     </div>
                 </nav>
             </div>
-        </div>
-        <div class="container">
-            <div class="row">
-                <div class="col-9 vh-100">
-                    <!--for stock graph-->
-                    <div class="row">
-                        <img src="https://miro.medium.com/v2/resize:fit:1013/1*4fu8Ggh1xnkCm1vjgUKGMg.png" class="img-fluid">
-                    </div>
-
-                    <!--for predicted values-->
-                    <div class="row">
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th scope="col"></th>
-                                    <th scope="col">First</th>
-                                    <th scope="col">Last</th>
-                                    <th scope="col">Handle</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <th scope="row">Current Value</th>
-                                    <td>Mark</td>
-                                    <td>Otto</td>
-                                    <td>@mdo</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">2</th>
-                                    <td>Jacob</td>
-                                    <td>Thornton</td>
-                                    <td>@fat</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">3</th>
-                                    <td>Larry</td>
-                                    <td>the Bird</td>
-                                    <td>@twitter</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                <div class="col-3 sidebar">
-                    <div class="scrollbox">
-                        
-                    </div>
-                </div>
+            <div class="container py-3">        
+                <main>
+                    <div class="row row-cols-1 row-cols-md-3 mb-3 text-center stocks-container"></div>
+                </main>
             </div>
         </div>
         <script>
@@ -74,32 +32,54 @@
             function createStockDivs(stocks) {
                 // Ottieni il body del documento
                 var container = document.querySelector(".stocks-container");
-                
-                // Itera attraverso ciascun valore di stocks
-                stocks.forEach(function(stock) {
-                    var stock_card = document.createElement('div');
-                    stock_card.textContent = stock;
-                    stock_card.className = "stock-card" 
-                    
-                    var span = document.createElement('span');
-                    span.textContent = "Loading"
-                    stock_card.appendChild(span);
+
+                stocks.forEach((stock) => {
+                    // creating stock card header
+                    var card_header = document.createElement("div");
+                    card_header.className = "card-header py-3";
+                    var stock_name = document.createElement("h4");
+                    stock_name.className = "card-title pricing-card-title";
+                    stock_name.textContent = stock;
+                    card_header.appendChild(stock_name);
+
+                    // creating stock card body
+                    var card_body = document.createElement("div");
+                    card_body.className = "card-body";
+                    var stock_price = document.createElement("h1");
+                    stock_price.className = "my-0 fw-normal";
+                    stock_price.textContent = "Loading";
                     setInterval(function() {
                         fetch('/value/' + stock)
                             .then(response => response.json())
                             .then(data => {
-                                span.textContent = 'Price: ' + parseFloat(data).toFixed(4);
+                                stock_price.textContent = parseFloat(data).toFixed(4);
                             })
                             .catch(error => {
                                 console.error('Error fetching data:', error);
                             });
                     }, 5000);
-                    container.appendChild(stock_card);
+                    card_body.appendChild(stock_price);
+
+                    // creating card div
+                    var card_div = document.createElement("div");
+                    card_div.className = "card mb-4 rounded-3 shadow-sm";
+                    card_div.appendChild(card_header);
+                    card_div.append(card_body);
+                    card_div.addEventListener("click",() => {
+                        window.location.href = `/chart/${stock}`;
+                    });
+
+                    // creating col div
+                    var col_div = document.createElement("div");
+                    col_div.className = "col";
+                    col_div.appendChild(card_div);
+
+                    container.appendChild(col_div);
                 });
             }
             
             /* creating the div for every stock */
-            //createStockDivs(data);
+            createStockDivs(data);
         </script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     </body>
