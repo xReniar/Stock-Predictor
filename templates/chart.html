@@ -14,7 +14,7 @@
                 <nav class="navbar navbar-expand-lg bg-body-tertiary">
                     <div class="container-md">
                         <a class="navbar-brand" href="#">
-                            <span class="display-6">{{ stock }} predictions</span>
+                            <span class="display-6">{{ response.stock_name }} predictions</span>
                         </a>
                     </div>
                 </nav>
@@ -40,16 +40,13 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                {% for model in response.models %}
                                 <tr>
-                                    <th scope="row">Linear Regression</th>
-                                    <td id="sklearn-value"></td>
-                                    <td id="sklearn-mse"></td>
+                                    <th scope="row">{{ model }}</th>
+                                    <td id="{{ model }}-value"></td>
+                                    <td id="{{ model }}-mse"></td>
                                 </tr>
-                                <tr>
-                                    <th scope="row">RNN</th>
-                                    <td id="pytorch-value"></td>
-                                    <td id="pytorch-mse"></td>
-                                </tr>
+                                {% endfor %}
                             </tbody>
                         </table>
                     </div>
