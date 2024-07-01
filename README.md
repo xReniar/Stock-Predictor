@@ -29,7 +29,8 @@ The `db.json` stores all the information about the stocks used, the predicted va
             "value": 0,
             "mse": 0
         }
-    },
+    }
+}
 ```
 After adding all the stocks needed run the `setup.py` to create all the models, and update the `db.json`:
 ```bash
