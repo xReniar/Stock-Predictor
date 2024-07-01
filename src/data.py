@@ -12,9 +12,10 @@ def get_stock_price_state(symbol:str):
     return data["Close"].iloc[-1] - data["Close"].iloc[-2]
 
 def get_chart_values(symbol:str):
+    current_date = datetime.now()
     data = yf.download(symbol,
-                   start=datetime.now() - timedelta(days=60),
-                   end=datetime.now(),
+                   start=current_date - timedelta(days=60),
+                   end=current_date,
                    interval="1d")
     data = data.reset_index()
     return dict(
