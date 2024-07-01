@@ -3,6 +3,7 @@ import numpy as np
 import pandas as pd
 import yfinance as yf
 import json
+import os
 
 
 def get_current_price(symbol:str):
@@ -34,9 +35,16 @@ def download_stock_data(ticker:str) -> pd.Series:
                              progress=False)
     return stock_data['Close']
 
-def update_db_stock(stock,model,value,mse):
-    db = json.load(open("../db.json"))
-    db[stock][model]["value"] = value
-    db[stock][model]["mse"] = mse
-    with open("../db.json","w") as f:
+def get_models():
+    folder_content = [x.split(".py")[0] for x in os.listdir("src")]
+    folder_content.remove("data")
+    folder_content.remove("setup")
+    folder_content.remove("__pycache__")
+    return sorted(folder_content)
+
+def update_result_stock(stock,model,value,mse):
+    db = json.load(open(f"../result/{model}.json"))
+    db[stock]["predicted"] = value
+    db[stock]["mse"] = mse
+    with open(f"../result/{model}.json","w") as f:
         json.dump(db,f,indent=4)
