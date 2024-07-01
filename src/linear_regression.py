@@ -39,7 +39,7 @@ def evaluate_model(ticker:str, model:LinearRegression,X_test, y_test):
     predicted_price = model.predict(last_sequence)[0]
     mse = mean_squared_error(y_test,model.predict(X_test))
 
-    update_db_stock(ticker,"sklearn",predicted_price,mse)
+    update_db_stock(ticker,"linear_regression",predicted_price,mse)
 
 def main(ticker):
     lookback = 10
