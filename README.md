@@ -7,29 +7,10 @@ To install all the libraries:
 pip3 install -r requirements.txt
 ```
 ## How it works
-The `db.json` stores all the information about the stocks used, the predicted values and the mean squared error of the training. If you wanna add other stocks check [this](https://github.com/ahnazary/Finance/blob/master/finance/src/database/valid_tickers.csv). When ready to add just add it like this:
+The `db.json` stores all the information about the stocks used, the predicted values and the mean squared error of the training. If you wanna add other stocks check [this](https://github.com/ahnazary/Finance/blob/master/finance/src/database/valid_tickers.csv). When ready to add just add it in the `stocks`:
 ```json
 {
-    "BTC-USD": {
-        "pytorch": {
-            "value": 60523.98296764683,
-            "mse": 0.0024650844279676676
-        },
-        "sklearn": {
-            "value": 62813.428385479114,
-            "mse": 1094015.7530843548
-        }
-    },
-    "selected stock": {
-        "pytorch": {
-            "value": 0,
-            "mse": 0
-        },
-        "sklearn": {
-            "value": 0,
-            "mse": 0
-        }
-    }
+    "stocks": ["add","here","the","selected","stocks"]
 }
 ```
 After adding all the stocks needed run the `setup.py` to create all the models, and update the `db.json`:
