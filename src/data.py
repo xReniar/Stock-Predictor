@@ -1,4 +1,4 @@
-import numpy as np
+import pandas as pd
 import yfinance as yf
 from datetime import datetime,timedelta
 
@@ -13,7 +13,7 @@ def get_stock_price_state(symbol:str):
 
 def get_chart_values(symbol:str):
     current_date = datetime.now()
-    data = yf.download(symbol,
+    data: pd.DataFrame = yf.download(symbol,
                    start=current_date - timedelta(days=60),
                    end=current_date,
                    interval="1d")
