@@ -1,29 +1,42 @@
 {
-    "stocks": [
-        {
-            "name": "BTC-USD",
-            "pytorch-model":"",
-            "scikit-model":""
+    "BTC-USD": {
+        "pytorch": {
+            "value": 60523.98296764683,
+            "mse": 0.0024650844279676676
         },
-        {
-            "name": "AAPL",
-            "pytorch-model":"",
-            "scikit-model":""
-        },
-        {
-            "name": "AMZN",
-            "pytorch-model":"",
-            "scikit-model":""
-        },
-        {
-            "name": "BTC-EUR",
-            "pytorch-model":"",
-            "scikit-model":""
-        },
-        {
-            "name": "GOOG",
-            "pytorch-model":"",
-            "scikit-model":""
+        "sklearn": {
+            "value": 62813.428385479114,
+            "mse": 1094015.7530843548
         }
-    ]   
+    },
+    "GOOG": {
+        "pytorch": {
+            "value": 158.97584429502604,
+            "mse": 0.006953886244446039
+        },
+        "sklearn": {
+            "value": 183.7525408338246,
+            "mse": 6.142393705614074
+        }
+    },
+    "AAPL": {
+        "pytorch": {
+            "value": 188.5902341370188,
+            "mse": 0.0052114613354206085
+        },
+        "sklearn": {
+            "value": 210.8962823174625,
+            "mse": 7.347346199544012
+        }
+    },
+    "BTC-EUR": {
+        "pytorch": {
+            "value": 54332.53308811898,
+            "mse": 0.005313229281455278
+        },
+        "sklearn": {
+            "value": 56690.07341849833,
+            "mse": 916017.8492101786
+        }
+    }
 }
