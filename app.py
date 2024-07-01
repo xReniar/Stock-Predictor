@@ -11,9 +11,7 @@ def default():
 @app.route("/get_stocks")
 def get_stocks():
     db = json.load(open("db.json"))
-    #stocks = sorted([element["name"] for element in db["stocks"]])
-    stocks = sorted(db.keys())
-    return jsonify(stocks)
+    return jsonify(sorted(db["stocks"]))
 
 @app.route("/chart/<string:stock>")
 def chart_page(stock):
