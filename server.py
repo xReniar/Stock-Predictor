@@ -26,3 +26,7 @@ def current_value(stock):
 @app.route("/price_state/<string:stock>")
 def price_state(stock):
     return str(get_stock_price_state(stock))
+
+@app.route("/chart_values/<string:stock>")
+def chart_values(stock):
+    return get_chart_values(stock)
