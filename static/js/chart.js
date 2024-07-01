@@ -13,7 +13,7 @@ fetch(`/chart_values/${stock}`)
                 labels: dataset["xValues"],
                 datasets: [{
                     label: stock,
-                    backgroundColor:"rgba(0,0,255,1.0)",
+                    backgroundColor: "rgba(0,0,255,1.0)",
                     borderColor: "rgba(0,0,255,1.0)",
                     data: dataset["yValues"],
                     tension: 0.4,
@@ -21,20 +21,23 @@ fetch(`/chart_values/${stock}`)
                 }]
             }
         });
-        
     });
 
-["pytorch","sklearn"].forEach((model) => {
-    fetch(`/prediction/${model}/${stock}`)
-        .then(response => response.json())
-        .then(data => {
-            var value = document.getElementById(`${model}-value`);
-            value.textContent = parseFloat(data).toFixed(4);
-        });
-    fetch(`/mse/${model}/${stock}`)
-        .then(response => response.json())
-        .then(data => {
-            var mse = document.getElementById(`${model}-mse`);
-            mse.textContent = parseFloat(data).toFixed(4);
-        });
-});
+fetch(`/models`)
+    .then(response => response.json())
+    .then(models => {
+        models.forEach((model) => {
+            fetch(`/prediction/${model}/${stock}`)
+                .then(response => response.json())
+                .then(data => {
+                    var value = document.getElementById(`${model}-value`);
+                    value.textContent = parseFloat(data).toFixed(4);
+                });
+            fetch(`/mse/${model}/${stock}`)
+                .then(response => response.json())
+                .then(data => {
+                    var mse = document.getElementById(`${model}-mse`);
+                    mse.textContent = parseFloat(data).toFixed(4);
+                });
+        }); 
+    });
