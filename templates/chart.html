@@ -14,7 +14,7 @@
                 <nav class="navbar navbar-expand-lg bg-body-tertiary">
                     <div class="container-md">
                         <a class="navbar-brand" href="#">
-                            <span class="display-6">Stock Predictor</span>
+                            <span class="display-6">{{ stock }} predictions</span>
                         </a>
                     </div>
                 </nav>
@@ -42,13 +42,13 @@
                             <tbody>
                                 <tr>
                                     <th scope="row">Linear Regression</th>
-                                    <td></td>
-                                    <td></td>
+                                    <td id="sklearn-value"></td>
+                                    <td id="sklearn-mse"></td>
                                 </tr>
                                 <tr>
                                     <th scope="row">RNN</th>
-                                    <td></td>
-                                    <td></td>
+                                    <td id="pytorch-value"></td>
+                                    <td id="pytorch-mse"></td>
                                 </tr>
                             </tbody>
                         </table>
