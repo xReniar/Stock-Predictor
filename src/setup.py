@@ -3,20 +3,15 @@ import json
 
 db = json.load(open("../db.json"))
 stocks = db["stocks"]
-for stock in stocks:
-    db[stock] = dict(
-        pytorch = dict(
-            value = 0,
-            mse = 0
-        ),
-        sklearn = dict(
-            value = 0,
+for model in ["linear_regression","lstm"]:
+    model_dict = {}
+    for stock in stocks:
+        model_dict[stock] = dict(
+            predictions = 0,
             mse = 0
         )
-    )
-
-with open("../db.json","w") as f:
-    json.dump(db,f,indent=4)
+    with open(f"../result/{model}.json","w") as f:
+        json.dump(model_dict,f,indent=4)
 
 for stock in stocks:
     print(f"creating models for {stock}")
