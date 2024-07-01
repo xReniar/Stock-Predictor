@@ -14,11 +14,27 @@ fetch(`/chart_values/${stock}`)
                 datasets: [{
                     label: stock,
                     backgroundColor:"rgba(0,0,255,1.0)",
-                    borderColor: "rgba(0,0,255,0.1)",
+                    borderColor: "rgba(0,0,255,1.0)",
                     data: dataset["yValues"],
-                    tension: 0.4
+                    tension: 0.4,
+                    pointRadius: 0
                 }]
-            },
+            }
         });
         
     });
+
+["pytorch","sklearn"].forEach((model) => {
+    fetch(`/prediction/${model}/${stock}`)
+        .then(response => response.json())
+        .then(data => {
+            var value = document.getElementById(`${model}-value`);
+            value.textContent = parseFloat(data).toFixed(4);
+        });
+    fetch(`/mse/${model}/${stock}`)
+        .then(response => response.json())
+        .then(data => {
+            var mse = document.getElementById(`${model}-mse`);
+            mse.textContent = parseFloat(data).toFixed(4);
+        });
+});
