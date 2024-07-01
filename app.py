@@ -16,9 +16,16 @@ def get_stocks():
 @app.route("/chart/<string:stock>")
 def chart_page(stock):
     return render_template("chart.html",
-                           stock=stock)
+                           response = dict(
+                               stock_name = stock,
+                               models = sorted(get_models())
+                           ))
 
 # single value requests
+@app.route("/models")
+def models():
+    return sorted(get_models())
+
 @app.route("/value/<string:stock>")
 def current_value(stock):
     return str(get_current_price(stock))
@@ -33,12 +40,12 @@ def chart_values(stock):
 
 @app.route("/prediction/<string:model>/<string:stock>")
 def stock_prediction(model,stock):
-    db = json.load(open("db.json"))
+    db = json.load(open(f"result/{model}.json"))
     stock_obj = db[stock]
-    return str(stock_obj[f"{model}"]["value"])
+    return str(stock_obj["prediction"])
 
 @app.route("/mse/<string:model>/<string:stock>")
 def stock_error(model,stock):
-    db = json.load(open("db.json"))
+    db = json.load(open(f"result/{model}.json"))
     stock_obj = db[stock]
-    return str(stock_obj[f"{model}"]["mse"])
+    return str(stock_obj["mse"])
