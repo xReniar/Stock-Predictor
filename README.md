@@ -14,7 +14,7 @@ The `db.json` stores all the information about the stocks used, the predicted va
     "stocks": ["add","here","the","selected","stocks"]
 }
 ```
-After adding all the stocks needed run the `setup.py` to create all the models, and update the `db.json`:
+After adding all the stocks needed, run the `setup.py` to create all the models and update the files inside `result` folder :
 ```bash
 cd src
 python3 setup.py
