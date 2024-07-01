@@ -159,7 +159,7 @@ def evaluate_model(ticker:str, lookback:int, scaler, model, X_test, y_test):
     predicted_price = dc(dummies[:, 0])[-1]
     mse = float(mean_squared_error(y_test, predictions_np))
 
-    update_db_stock(ticker,"pytorch",predicted_price,mse)
+    update_db_stock(ticker,"lstm",predicted_price,mse)
 
 def main(ticker):
     lookback = 10
