@@ -20,8 +20,7 @@ The `db.json` stores all the information about the stocks used, the predicted va
             "mse": 1094015.7530843548
         }
     },
-    ...,
-    "selected stock": {          // selected stock
+    "selected stock": {
         "pytorch": {
             "value": 0,
             "mse": 0
