@@ -1,7 +1,7 @@
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_squared_error
 from sklearn.linear_model import LinearRegression
-from data import download_stock_data, update_db_stock, pd, np
+from data import download_stock_data, update_result_stock, pd, np
 import joblib
 
 
@@ -39,11 +39,11 @@ def evaluate_model(ticker:str, model:LinearRegression,X_test, y_test):
     predicted_price = model.predict(last_sequence)[0]
     mse = mean_squared_error(y_test,model.predict(X_test))
 
-    update_db_stock(ticker,"linear_regression",predicted_price,mse)
+    update_result_stock(ticker,"linear_regression",predicted_price,mse)
 
 def main(ticker):
     lookback = 10
-    data = download_stock_data(ticker)
+    data = download_stock_data(ticker,"1d")['Close']
     sequences = preprocessing(data,lookback)
     train_data, test_data = split_data(sequences)
 
@@ -52,4 +52,4 @@ def main(ticker):
     evaluate_model(ticker,model,X_test, y_test)
 
     # saving model
-    joblib.dump(model,f"../models/{ticker}.pkl")
+    joblib.dump(model,f"output/{ticker}.pkl")

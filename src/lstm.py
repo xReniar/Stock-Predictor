@@ -2,7 +2,7 @@ from copy import deepcopy as dc
 from sklearn.preprocessing import MinMaxScaler
 from torch.utils.data import Dataset, DataLoader
 from sklearn.metrics import mean_squared_error
-from data import download_stock_data, update_db_stock, pd, np
+from data import download_stock_data, update_result_stock, pd, np
 from torch import nn
 import torch
 
@@ -10,15 +10,15 @@ import torch
 device = 'cuda:0' if torch.cuda.is_available() else 'cpu'
 
 class TimeSeriesDataset(Dataset):
-    def __init__(self, X, y):
+    def __init__(self, X, y) -> None:
         self.X = X
         self.y = y
-
+    
     def __len__(self):
         return len(self.X)
-
-    def __getitem__(self, i):
-        return self.X[i], self.y[i]
+    
+    def __getitem__(self, index):
+        return self.X[index], self.y[index]
     
 class LSTM(nn.Module):
     def __init__(self, input_size, hidden_size, num_stacked_layers):
@@ -159,12 +159,12 @@ def evaluate_model(ticker:str, lookback:int, scaler, model, X_test, y_test):
     predicted_price = dc(dummies[:, 0])[-1]
     mse = float(mean_squared_error(y_test, predictions_np))
 
-    update_db_stock(ticker,"lstm",predicted_price,mse)
+    update_result_stock(ticker,"lstm",predicted_price,mse)
 
 def main(ticker):
     lookback = 10
-    data = download_stock_data(ticker)
-    sequences,scaler = preprocessing(data,lookback)
+    data = download_stock_data(ticker,"1d")['Close']
+    sequences, scaler = preprocessing(data,lookback)
     train_data, test_data = split_data(sequences)
 
     X_train, y_train, X_test, y_test = create_training_data(train_data, test_data,lookback)
@@ -172,4 +172,4 @@ def main(ticker):
     evaluate_model(ticker,lookback,scaler, model,X_test,y_test)
 
     # saving model
-    torch.save(model.state_dict(),f"../models/{ticker}.pth")
+    torch.save(model.state_dict(),f"output/lstm-{ticker}.pth")
