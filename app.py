@@ -42,7 +42,7 @@ def chart_values(stock):
 def stock_prediction(model,stock):
     db = json.load(open(f"result/{model}.json"))
     stock_obj = db[stock]
-    return str(stock_obj["prediction"])
+    return str(stock_obj["predicted"])
 
 @app.route("/mse/<string:model>/<string:stock>")
 def stock_error(model,stock):
