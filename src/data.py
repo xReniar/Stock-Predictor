@@ -27,24 +27,25 @@ def get_chart_values(symbol:str):
         yValues = data["Close"].tolist()
     )
 
-def download_stock_data(ticker:str) -> pd.Series:
+def download_stock_data(ticker:str,timeframe:str) -> pd.Series:
     current_date = datetime.now()
+    delta = 3652 if timeframe == "1d" else 730
     stock_data = yf.download(ticker,
-                             start=current_date - timedelta(days=3652),
+                             start=current_date - timedelta(days=delta),
                              end=current_date,
+                             interval=timeframe,
                              progress=False)
-    return stock_data['Close']
+    return stock_data
 
 def get_models():
     folder_content = [x.split(".py")[0] for x in os.listdir("src")]
-    folder_content.remove("data")
-    folder_content.remove("setup")
-    folder_content.remove("__pycache__")
+    for file_name in ["data","indicators","setup","__pycache__"]:
+        folder_content.remove(file_name)
     return sorted(folder_content)
 
 def update_result_stock(stock,model,value,mse):
-    db = json.load(open(f"../result/{model}.json"))
+    db = json.load(open(f"result/{model}.json"))
     db[stock]["predicted"] = value
     db[stock]["mse"] = mse
-    with open(f"../result/{model}.json","w") as f:
+    with open(f"result/{model}.json","w") as f:
         json.dump(db,f,indent=4)
