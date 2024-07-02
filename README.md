@@ -1,5 +1,5 @@
 # Stock Predictor
-Machine learning course project that tries to predict if the price of the selected stocks are going to rise or fall. We used 3 models for predicting the price and they are `Linear Regression`, `LSTM` and `CNN`.
+Machine learning course project that tries to predict if the price of the selected stocks are going to rise or fall. We used 3 models for predicting the price and they are `Linear Regression`, `LSTM` and `RNN`.
 ## Installing the requirements
 [![techused](https://skillicons.dev/icons?i=js,html,css,bootstrap,py,flask,pytorch,sklearn)](https://skillicons.dev)
 <br>
@@ -16,8 +16,7 @@ The `db.json` stores all the information about the stocks used, the predicted va
 ```
 After adding all the stocks needed, run the `setup.py` to create all the models and update the files inside `result` folder :
 ```bash
-cd src
-python3 setup.py
+python3 src/setup.py
 ```
 ## Run server
 ```bash
