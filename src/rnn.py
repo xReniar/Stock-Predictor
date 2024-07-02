@@ -64,6 +64,10 @@ def preprocessing(data: pd.DataFrame, lookback: int):
     data = data[features]
     data = data.set_index("Date")
 
+    # shifting values
+    data["Close"] = data["Close"].shift(-1)
+    data = data.iloc[:-1]
+
     scaler = MinMaxScaler(feature_range=(-1,1))
     data = scaler.fit_transform(data.to_numpy())
 
