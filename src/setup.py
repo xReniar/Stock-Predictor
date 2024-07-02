@@ -1,9 +1,10 @@
+from data import get_models
 import linear_regression,lstm
 import json
 
 db = json.load(open("../db.json"))
 stocks = db["stocks"]
-for model in ["linear_regression","lstm"]:
+for model in get_models():
     model_dict = {}
     for stock in stocks:
         model_dict[stock] = dict(
