@@ -1,0 +1,66 @@
+{
+    "BTC-USD": {
+        "predicted": 0,
+        "mse": 0
+    },
+    "GOOG": {
+        "predicted": 0,
+        "mse": 0
+    },
+    "AAPL": {
+        "predicted": 0,
+        "mse": 0
+    },
+    "BTC-EUR": {
+        "predicted": 0,
+        "mse": 0
+    },
+    "AMZN": {
+        "predicted": 0,
+        "mse": 0
+    },
+    "NVDA": {
+        "predicted": 0,
+        "mse": 0
+    },
+    "NKE": {
+        "predicted": 0,
+        "mse": 0
+    },
+    "TSLA": {
+        "predicted": 0,
+        "mse": 0
+    },
+    "F": {
+        "predicted": 0,
+        "mse": 0
+    },
+    "T": {
+        "predicted": 0,
+        "mse": 0
+    },
+    "BAC": {
+        "predicted": 0,
+        "mse": 0
+    },
+    "KO": {
+        "predicted": 0,
+        "mse": 0
+    },
+    "TM": {
+        "predicted": 0,
+        "mse": 0
+    },
+    "MCD": {
+        "predicted": 0,
+        "mse": 0
+    },
+    "DIS": {
+        "predicted": 0,
+        "mse": 0
+    },
+    "EURUSD=X": {
+        "predicted": 0,
+        "mse": 0
+    }
+}
