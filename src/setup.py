@@ -1,5 +1,5 @@
 from data import get_models
-import linear_regression,lstm,rnn
+import linear_regression,lstm,rnn,cnn
 import json
 
 db = json.load(open("db.json"))
@@ -20,3 +20,4 @@ for stock in stocks:
     linear_regression.main(stock)
     lstm.main(stock)
     rnn.main(stock)
+    cnn.main(stock)
