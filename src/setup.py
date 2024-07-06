@@ -20,4 +20,9 @@ for stock in stocks:
     linear_regression.main(stock)
     lstm.main(stock)
     rnn.main(stock)
+<<<<<<< HEAD
     cnn.main(stock)
+=======
+    cnn.main(stock)
+    
+>>>>>>> bd29aab54740562dd78e5153157e5fb9f9a46e51
