@@ -56,7 +56,8 @@ fetch(`/models`)
                 let colors = [
                     "rgba(255,0,0,1.0)",
                     "rgba(135,206,235,255)",
-                    "rgba(0,255,0,1.0)"
+                    "rgba(0,255,0,1.0)",
+                    "rgba(255,128,0,1.0)"
                 ];
 
                 let datasets = [
