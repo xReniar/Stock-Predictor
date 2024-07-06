@@ -74,7 +74,7 @@ def evaluate_model(ticker: str, model, X_test, y_test):
         predictions = model(torch.tensor(X_test, dtype=torch.float32)).squeeze().numpy()
         mse = mean_squared_error(y_test, predictions)
     
-    update_result_stock(ticker, "cnn", predicted_price, mse)
+        update_result_stock(ticker, "cnn", predicted_price, mse)
 
 def main(ticker):
     lookback = 10
