@@ -96,6 +96,10 @@ fetch(`/models`)
                         datasets: datasets,
                         labels: axis.xValues
                     },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false
+                    }
                 });
             });
         })
