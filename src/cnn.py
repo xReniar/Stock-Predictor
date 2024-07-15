@@ -7,6 +7,9 @@ import torch.nn as nn
 import torch.optim as optim
 from torch.utils.data import DataLoader, TensorDataset
 
+
+device = 'cuda:0' if torch.cuda.is_available() else 'cpu'
+
 class StockPredictorCNN(nn.Module):
     def __init__(self):
         super(StockPredictorCNN, self).__init__()
@@ -49,6 +52,7 @@ def create_training_data(train_data, test_data):
 
 def train(X_train, y_train, epochs=50, batch_size=32):
     model = StockPredictorCNN()
+    model.to(device)
     criterion = nn.MSELoss()
     optimizer = optim.Adam(model.parameters(), lr=0.001)
     
@@ -88,5 +92,3 @@ def main(ticker):
 
     # saving model
     joblib.dump(model,f"output/{ticker}.pkl")
-
-main("AAPL")
