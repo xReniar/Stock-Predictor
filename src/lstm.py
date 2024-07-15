@@ -74,10 +74,10 @@ def create_training_data(train_data, test_data,lookback):
     X_test = X[split_index:].reshape((-1, lookback, 1))
     y_test = y[split_index:].reshape((-1, 1))
 
-    X_train = torch.tensor(X_train).float()
-    y_train = torch.tensor(y_train).float()
-    X_test = torch.tensor(X_test).float()
-    y_test = torch.tensor(y_test).float()
+    X_train = torch.tensor(X_train,device=device).float()
+    y_train = torch.tensor(y_train,device=device).float()
+    X_test = torch.tensor(X_test,device=device).float()
+    y_test = torch.tensor(y_test,device=device).float()
 
     return (X_train, y_train, X_test, y_test)
 
@@ -142,7 +142,7 @@ def train(X_train, y_train, X_test, y_test):
 
     return model
 
-def evaluate_model(ticker:str, lookback:int, scaler, model, X_test, y_test):
+def evaluate_model(ticker:str, lookback:int, scaler, model, X_test:torch.Tensor, y_test:torch.Tensor):
     # calculating predicted price
     test_predictions = model(X_test.to(device)).detach().cpu().numpy().flatten()
     dummies = np.zeros((X_test.shape[0], lookback+1))
@@ -152,12 +152,12 @@ def evaluate_model(ticker:str, lookback:int, scaler, model, X_test, y_test):
     # calculating mse
     model.eval()
     with torch.no_grad():
-        predictions = model(X_test)
-    predictions_np = predictions.detach().numpy()
+        predictions: torch.Tensor = model(X_test)
+    predictions_np = predictions.detach().cpu().numpy()
 
     # predicted value and mse
     predicted_price = dc(dummies[:, 0])[-1]
-    mse = float(mean_squared_error(y_test, predictions_np))
+    mse = float(mean_squared_error(y_test.cpu(), predictions_np))
 
     update_result_stock(ticker,"lstm",predicted_price,mse)
 

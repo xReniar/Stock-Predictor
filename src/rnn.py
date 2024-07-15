@@ -40,10 +40,12 @@ class RNN(nn.Module):
     
 def preprocessing(data: pd.DataFrame, lookback: int):
     data = data.reset_index()
-    data["Datetime"] = pd.to_datetime(data["Datetime"])
-    data["Date"] = data["Datetime"].dt.date
-    data["Time"] = data["Datetime"].dt.hour
-    data = data.drop(columns=["Volume","Adj Close","Datetime"])
+    #data["Datetime"] = pd.to_datetime(data["Datetime"])
+    #data["Date"] = data["Datetime"].dt.date
+    #data["Time"] = data["Datetime"].dt.hour
+    #data = data.drop(columns=["Volume","Adj Close","Datetime"])
+    data["Date"] = pd.to_datetime(data["Date"])
+    data = data.drop(columns=["Adj Close"])
     
     # adding indicator values
     indicators.sma(data,lookback)
@@ -94,10 +96,10 @@ def create_training_data(train_data, test_data):
     y_test = y_test.reshape((-1, 1))
 
     # creating tensors
-    X_train = torch.tensor(X_train).float()
-    y_train = torch.tensor(y_train).float()
-    X_test = torch.tensor(X_test).float()
-    y_test = torch.tensor(y_test).float()
+    X_train = torch.tensor(X_train,device=device).float()
+    y_train = torch.tensor(y_train,device=device).float()
+    X_test = torch.tensor(X_test,device=device).float()
+    y_test = torch.tensor(y_test,device=device).float()
 
     return (X_train, y_train, X_test, y_test)
 
@@ -147,7 +149,7 @@ def train(X_train, y_train, X_test, y_test):
 
     return model
 
-def evaluate_model(ticker:str, lookback:int, scaler, model, X_test, y_test):
+def evaluate_model(ticker:str, lookback:int, scaler, model, X_test: torch.Tensor, y_test: torch.Tensor):
     # calculating predicted price
     test_predictions = model(X_test.to(device)).detach().cpu().numpy().flatten()
 
@@ -159,18 +161,18 @@ def evaluate_model(ticker:str, lookback:int, scaler, model, X_test, y_test):
     # calculating mse
     model.eval()
     with torch.no_grad():
-        predictions = model(X_test)
-    predictions_np = predictions.detach().numpy()
+        predictions:torch.Tensor = model(X_test)
+    predictions_np = predictions.detach().cpu().numpy()
 
     # predicted value and mse
     predicted_price = test_predictions[-1]
-    mse = float(mean_squared_error(y_test, predictions_np))
+    mse = float(mean_squared_error(y_test.cpu(), predictions_np))
 
     update_result_stock(ticker,"rnn",predicted_price,mse)
 
 def main(ticker):
     lookback = 20
-    data = download_stock_data(ticker,"1h")
+    data = download_stock_data(ticker,"1d")
     data, scaler = preprocessing(data,lookback)
     train_data, test_data = split_data(data)
 
