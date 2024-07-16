@@ -1,66 +1,66 @@
 {
     "BTC-USD": {
-        "predicted": 0,
-        "mse": 0
+        "predicted": 60957.83984375,
+        "mse": 1115770.1566525158
     },
     "GOOG": {
-        "predicted": 0,
-        "mse": 0
+        "predicted": 190.77796936035156,
+        "mse": 13.17093693450367
     },
     "AAPL": {
-        "predicted": 0,
-        "mse": 0
+        "predicted": 228.4283447265625,
+        "mse": 11.989656627223619
     },
     "BTC-EUR": {
-        "predicted": 0,
-        "mse": 0
+        "predicted": 56199.3515625,
+        "mse": 959635.3947801231
     },
     "AMZN": {
-        "predicted": 0,
-        "mse": 0
+        "predicted": 193.61978149414062,
+        "mse": 8.239943228319738
     },
     "NVDA": {
-        "predicted": 0,
-        "mse": 0
+        "predicted": 132.303466796875,
+        "mse": 3.6808999195321825
     },
     "NKE": {
-        "predicted": 0,
-        "mse": 0
+        "predicted": 73.15754699707031,
+        "mse": 5.329270436693966
     },
     "TSLA": {
-        "predicted": 0,
-        "mse": 0
+        "predicted": 251.01364135742188,
+        "mse": 61.68273616703822
     },
     "F": {
-        "predicted": 0,
-        "mse": 0
+        "predicted": 14.171891212463379,
+        "mse": 0.10976599653201198
     },
     "T": {
-        "predicted": 0,
-        "mse": 0
+        "predicted": 18.770647048950195,
+        "mse": 0.08046922492907535
     },
     "BAC": {
-        "predicted": 0,
-        "mse": 0
+        "predicted": 41.18511199951172,
+        "mse": 0.3663230644512756
     },
     "KO": {
-        "predicted": 0,
-        "mse": 0
+        "predicted": 62.999046325683594,
+        "mse": 0.47155665203721214
     },
     "TM": {
-        "predicted": 0,
-        "mse": 0
+        "predicted": 204.2152557373047,
+        "mse": 13.35679085439995
     },
     "MCD": {
-        "predicted": 0,
-        "mse": 0
+        "predicted": 254.95872497558594,
+        "mse": 11.021295930618168
     },
     "DIS": {
-        "predicted": 0,
-        "mse": 0
+        "predicted": 98.08932495117188,
+        "mse": 4.982800109122793
     },
     "EURUSD=X": {
-        "predicted": 0,
-        "mse": 0
+        "predicted": 1.0883456468582153,
+        "mse": 5.6059424584884564e-05
     }
 }
