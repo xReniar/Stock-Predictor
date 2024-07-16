@@ -19,7 +19,7 @@ def train_models(stocks: list):
         linear_regression.main(stock)
         lstm.main(stock)
         rnn.main(stock)
-        #cnn.main(stock)
+        cnn.main(stock)
 
 db = json.load(open("db.json"))
 stocks = db["stocks"]
