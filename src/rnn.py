@@ -119,7 +119,7 @@ def train(X_train, y_train, X_test, y_test):
 
     # defining hyperparameters
     learning_rate = 0.001
-    num_epochs = 3
+    num_epochs = 10
     loss_function = nn.MSELoss()
     optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate)
 
